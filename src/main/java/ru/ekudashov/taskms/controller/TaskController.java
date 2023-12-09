@@ -49,7 +49,7 @@ public final class TaskController {
     }
 
     @PostMapping(path = "/search")
-    public PageDto<TaskResponseDto> searchTasks(@Validated @RequestBody TaskRequestDto taskRequestDto, @PageableDefault Pageable pageable) {
+    public PageDto<TaskResponseDto> searchTasks(@RequestBody TaskRequestDto taskRequestDto, @PageableDefault Pageable pageable) {
 
         return taskService.findTasks(taskRequestDto, pageable);
     }
