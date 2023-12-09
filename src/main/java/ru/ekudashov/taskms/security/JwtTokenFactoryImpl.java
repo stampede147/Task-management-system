@@ -37,17 +37,13 @@ public class JwtTokenFactoryImpl implements TokenFactory {
     }
 
     @Override
-    public String createToken(String name, Collection<? extends GrantedAuthority> authorities) {
+    public String createToken(String name, Collection<? extends String> authorities) {
         log.trace("Started createToken(String, Collection> method");
         log.debug("Provided parameters name: {}, authorities: {}", name, authorities);
 
-        return createToken(name, authorities.stream().map(GrantedAuthority::getAuthority).toArray(String[]::new));
-    }
-
-    protected String createToken(String name, String[] authorities) {
         return JWT.create()
                 .withClaim(JwtTokenConstants.SUB, name)
-                .withArrayClaim(JwtTokenConstants.ROLES, authorities)
+                .withArrayClaim(JwtTokenConstants.ROLES, authorities.toArray(String[]::new))
                 .withClaim(JwtTokenConstants.ISSUED_AT, Instant.now())
                 .withClaim(JwtTokenConstants.EXPIRES_AT, Instant.now().plusMillis(tokenLifeMillis))
                 .sign(algorithm);

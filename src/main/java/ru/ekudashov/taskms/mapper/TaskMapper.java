@@ -1,9 +1,6 @@
 package ru.ekudashov.taskms.mapper;
 
-import org.mapstruct.DecoratedWith;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 import org.springframework.data.domain.Page;
 import ru.ekudashov.taskms.dto.PageDto;
 import ru.ekudashov.taskms.dto.TaskRequestDto;
@@ -19,6 +16,9 @@ public abstract class TaskMapper {
     public abstract Task toTask(TaskRequestDto taskRequestDto, UserRepository userRepository);
 
     public abstract TaskResponseDto toTaskResponseDto(Task task);
+
+    @InheritConfiguration
+    public abstract Task mergeTask(@MappingTarget Task mergeable, TaskRequestDto taskRequestDto, UserRepository userRepository);
 
     public abstract PageDto<TaskResponseDto> toTaskResponseDto(Page<Task> tasks);
 }
