@@ -39,13 +39,11 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     @Transactional
-    public TaskResponseDto updateTask(TaskRequestDto taskRequestDto) {
+    public TaskResponseDto updateTask(long taskId, TaskRequestDto taskRequestDto) {
 
-        Task task = taskMapper.toTask(taskRequestDto, userRepository);
+        Task task = taskMapper.mergeTask(taskRepository.getReferenceById(taskId), taskRequestDto, userRepository);
 
-        Task saved = taskRepository.save(task);
-
-        return taskMapper.toTaskResponseDto(saved);
+        return taskMapper.toTaskResponseDto(task);
     }
 
     @Override
