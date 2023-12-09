@@ -15,7 +15,7 @@ import ru.ekudashov.taskms.dto.TaskResponseDto;
 import ru.ekudashov.taskms.service.TaskService;
 
 @RestController
-@RequestMapping(path = "/api/v1/tasks")
+@RequestMapping(path = "/api/1/tasks")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public final class TaskController {
 
@@ -27,10 +27,10 @@ public final class TaskController {
         return taskService.createTask(taskRequestDto);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public TaskResponseDto updateTask(TaskRequestDto taskRequestDto) {
+    @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public TaskResponseDto updateTask(@PathVariable long id, TaskRequestDto taskRequestDto) {
 
-        return taskService.updateTask(taskRequestDto);
+        return taskService.updateTask(id, taskRequestDto);
     }
 
     @DeleteMapping(path = "/{id}")
