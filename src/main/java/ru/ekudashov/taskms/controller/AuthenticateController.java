@@ -12,8 +12,8 @@ import ru.ekudashov.taskms.service.AuthenticationService;
 
 @RestController
 @RequiredArgsConstructor()
-@RequestMapping(path = "/authenticate")
-public class JwtAuthenticationController {
+@RequestMapping()
+public class AuthenticateController {
 
     private final AuthenticationService authenticationService;
 
