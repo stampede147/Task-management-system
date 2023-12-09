@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.ekudashov.taskms.dto.NoteRequestDto;
 import ru.ekudashov.taskms.dto.NoteResponseDto;
@@ -20,7 +21,7 @@ public class NoteController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
-    public NoteResponseDto createTaskNote(NoteRequestDto taskNoteRequestDto) {
+    public NoteResponseDto createTaskNote(@Validated NoteRequestDto taskNoteRequestDto) {
 
         return noteService.createNote(taskNoteRequestDto);
     }
