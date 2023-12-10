@@ -84,7 +84,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.evgeniykudashov.adservice.Main</mainClass>
+					<mainClass>ru.ekudashov.taskms.Main</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
