@@ -1,5 +1,5 @@
 # Task-management-system
 
 # Deploying
-To build and start project text in command line: `docker compose up`
+To build and run the project text on the command line: `docker compose up`
 
