@@ -2,6 +2,7 @@ package ru.ekudashov.taskms.controller.advice;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,7 +26,8 @@ public class MethodArgumentValidationControllerAdvice {
 
         AdviceResponse adviceResponse = new AdviceResponse();
 
-        adviceResponse.setMessage(String.format("%s %s", e.getFieldError().getField(), e.getFieldError().getDefaultMessage()));
+        FieldError fieldError = e.getFieldError();
+        adviceResponse.setMessage(String.format("%s %s", fieldError.getField(), fieldError.getDefaultMessage()));
 
         return adviceResponse;
     }
